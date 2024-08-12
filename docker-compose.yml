@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: mysql_db
+    image: mysql:8.0.36
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=mirishop
+      - MYSQL_ROOT_PASSWORD=1234
+      - TZ=Asia/Seoul
+    restart: on-failure
+    volumes:
+      - ./database/config:/etc/mysql/conf.d
+      - ./database/data:/var/lib/mysql
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+
+  redis:
+    container_name: redis_server
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    restart: on-failure
+    volumes:
+      - ./redis/data:/data
+
+  mongodb:
+    container_name: mongodb_server
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    restart: on-failure
+    volumes:
+      - ./mongodb/data/db:/data/db
+      - ./mongodb/configdb:/data/configdb
+    command: mongod --auth

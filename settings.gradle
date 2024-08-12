@@ -1,0 +1,9 @@
+rootProject.name = 'multimodule'
+
+include 'activity-service'
+include 'apigateway'
+include 'newsfeed-service'
+include 'orderpayment-service'
+include 'productmanagement-service'
+include 'user-service'
+
