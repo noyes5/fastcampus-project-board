@@ -1,18 +1,18 @@
 package com.mirishop.user.member.service;
 
-import static com.mirishop.user.user.common.constants.UserConstants.EMAIL_REGEX;
-import static com.mirishop.user.user.common.constants.UserConstants.USER_PASSWORD_LENGTH;
+import static com.mirishop.user.common.constants.UserConstants.EMAIL_REGEX;
+import static com.mirishop.user.common.constants.UserConstants.USER_PASSWORD_LENGTH;
 
+import com.mirishop.user.auth.domain.UserDetailsImpl;
+import com.mirishop.user.common.exception.ErrorCode;
+import com.mirishop.user.common.exception.MemberException;
 import com.mirishop.user.member.domain.Role;
-import com.mirishop.user.member.entity.Member;
-import com.mirishop.user.user.auth.domain.UserDetailsImpl;
-import com.mirishop.user.member.repository.MemberRepository;
-import com.mirishop.user.user.common.exception.ErrorCode;
-import com.mirishop.user.user.common.exception.MemberException;
 import com.mirishop.user.member.dto.ChangePasswordRequest;
 import com.mirishop.user.member.dto.MemberJoinResponse;
 import com.mirishop.user.member.dto.MemberRequest;
 import com.mirishop.user.member.dto.MemberUpdateRequest;
+import com.mirishop.user.member.entity.Member;
+import com.mirishop.user.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

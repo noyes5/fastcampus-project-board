@@ -1,11 +1,11 @@
 package com.mirishop.user.member.service;
 
-import com.mirishop.user.member.entity.Member;
+import com.mirishop.user.common.exception.ErrorCode;
+import com.mirishop.user.common.exception.MemberException;
 import com.mirishop.user.member.dto.MemberDetailResponse;
 import com.mirishop.user.member.dto.MemberListResponse;
+import com.mirishop.user.member.entity.Member;
 import com.mirishop.user.member.repository.MemberRepository;
-import com.mirishop.user.user.common.exception.ErrorCode;
-import com.mirishop.user.user.common.exception.MemberException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

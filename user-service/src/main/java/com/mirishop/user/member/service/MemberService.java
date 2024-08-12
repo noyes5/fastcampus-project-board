@@ -1,6 +1,6 @@
 package com.mirishop.user.member.service;
 
-import com.mirishop.user.user.auth.domain.UserDetailsImpl;
+import com.mirishop.user.auth.domain.UserDetailsImpl;
 import com.mirishop.user.member.dto.ChangePasswordRequest;
 import com.mirishop.user.member.dto.MemberJoinResponse;
 import com.mirishop.user.member.dto.MemberRequest;

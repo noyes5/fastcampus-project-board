@@ -1,17 +1,13 @@
 package com.mirishop.user.member.controller;
 
+import com.mirishop.user.auth.domain.UserDetailsImpl;
+import com.mirishop.user.common.dto.BaseResponse;
+import com.mirishop.user.email.dto.EmailRequest;
+import com.mirishop.user.email.service.EmailService;
+import com.mirishop.user.member.dto.*;
 import com.mirishop.user.member.service.ImageUploadService;
 import com.mirishop.user.member.service.MemberQueryService;
 import com.mirishop.user.member.service.MemberService;
-import com.mirishop.user.user.auth.domain.UserDetailsImpl;
-import com.mirishop.user.user.common.dto.BaseResponse;
-import com.mirishop.user.user.email.repository.EmailRequest;
-import com.mirishop.user.user.email.service.EmailService;
-import com.mirishop.user.member.dto.ChangePasswordRequest;
-import com.mirishop.user.member.dto.MemberDetailResponse;
-import com.mirishop.user.member.dto.MemberJoinResponse;
-import com.mirishop.user.member.dto.MemberRequest;
-import com.mirishop.user.member.dto.MemberUpdateRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

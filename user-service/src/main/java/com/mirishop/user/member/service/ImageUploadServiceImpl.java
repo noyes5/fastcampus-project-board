@@ -1,8 +1,8 @@
 package com.mirishop.user.member.service;
 
-import com.mirishop.user.user.common.exception.EmailException;
-import com.mirishop.user.user.common.exception.ErrorCode;
-import com.mirishop.user.user.common.util.FileUtils;
+import com.mirishop.user.common.exception.EmailException;
+import com.mirishop.user.common.exception.ErrorCode;
+import com.mirishop.user.common.util.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
