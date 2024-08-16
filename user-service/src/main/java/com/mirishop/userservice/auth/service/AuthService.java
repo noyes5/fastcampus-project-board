@@ -5,7 +5,7 @@ import com.mirishop.userservice.auth.dto.response.TokenResponse;
 import com.mirishop.userservice.auth.infrastructure.JwtTokenProvider;
 import com.mirishop.userservice.common.exception.CustomException;
 import com.mirishop.userservice.common.exception.ErrorCode;
-import com.mirishop.userservice.common.redis.service.RedisService;
+import com.mirishop.userservice.infrastructure.redis.RedisService;
 import com.mirishop.userservice.user.entity.User;
 import com.mirishop.userservice.user.repository.UserRepository;
 import lombok.AllArgsConstructor;

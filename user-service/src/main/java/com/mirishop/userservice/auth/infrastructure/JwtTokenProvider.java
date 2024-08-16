@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.Date;
 
 @Component
@@ -29,11 +30,11 @@ public class JwtTokenProvider {
     private String secretKey;
 
     @Value("${jwt.expiration-time}")
-    private long accessTokenExpirationTime;
+    private Duration accessTokenExpirationTime;
 
     @Getter
     @Value("${jwt.refresh-expiration-time}")
-    private long refreshTokenExpirationTime;
+    private Duration refreshTokenExpirationTime;
 
     private SecretKey key;
 
@@ -43,11 +44,21 @@ public class JwtTokenProvider {
     }
 
     public String generateAccessToken(String userEmail) {
-        return createToken(userEmail, accessTokenExpirationTime);
+        return createToken(userEmail, accessTokenExpirationTime.toMillis());
     }
 
     public String generateRefreshToken(String userEmail) {
-        return createToken(userEmail, refreshTokenExpirationTime);
+        return createToken(userEmail, refreshTokenExpirationTime.toMillis());
+    }
+
+    private String createToken(String userEmail, long expirationTime) {
+        Date now = new Date();
+        return Jwts.builder()
+                .claim(CLAIM_EMAIL, userEmail)
+                .setIssuedAt(now)
+                .setExpiration(new Date(now.getTime() + expirationTime))
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
     }
 
     public String extractEmail(String token) {
@@ -57,7 +68,8 @@ public class JwtTokenProvider {
 
     public Long extractTokenExpiration(String token) {
         validateToken(token);
-        return parseClaims(token).getExpiration().getTime();
+        Date expirationDate = parseClaims(token).getExpiration();
+        return expirationDate.getTime() / 1000; // 밀리초를 초로 변환
     }
 
     public boolean validateToken(String token) {
@@ -71,16 +83,6 @@ public class JwtTokenProvider {
         } catch (JwtException | IllegalArgumentException e) {
             throw new CustomException(ErrorCode.INVALID_TOKEN);
         }
-    }
-
-    private String createToken(String userEmail, long expirationTime) {
-        Date now = new Date();
-        return Jwts.builder()
-                .claim(CLAIM_EMAIL, userEmail)
-                .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + expirationTime))
-                .signWith(key, SignatureAlgorithm.HS256)
-                .compact();
     }
 
     private Claims parseClaims(String token) {
