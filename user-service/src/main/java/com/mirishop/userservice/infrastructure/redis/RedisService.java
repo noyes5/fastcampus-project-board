@@ -1,4 +1,4 @@
-package com.mirishop.userservice.common.redis.service;
+package com.mirishop.userservice.common.infrastructure.redis;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;

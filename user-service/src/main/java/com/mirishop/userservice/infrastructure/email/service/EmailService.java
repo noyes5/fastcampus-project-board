@@ -1,6 +1,6 @@
-package com.mirishop.userservice.email.service;
+package com.mirishop.userservice.infrastructure.email.service;
 
-import com.mirishop.userservice.email.dto.EmailRequest;
+import com.mirishop.userservice.infrastructure.email.dto.EmailRequest;
 
 public interface EmailService {
 

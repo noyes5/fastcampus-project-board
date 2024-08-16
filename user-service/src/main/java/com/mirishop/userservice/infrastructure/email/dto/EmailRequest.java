@@ -1,4 +1,4 @@
-package com.mirishop.userservice.email.dto;
+package com.mirishop.userservice.infrastructure.email.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

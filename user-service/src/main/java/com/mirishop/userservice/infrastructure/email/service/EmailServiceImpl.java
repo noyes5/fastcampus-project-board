@@ -1,21 +1,28 @@
-package com.mirishop.userservice.email.service;
+package com.mirishop.userservice.infrastructure.email.service;
 
-import com.mirishop.userservice.common.redis.service.RedisService;
-import com.mirishop.userservice.email.dto.EmailRequest;
+import com.mirishop.userservice.infrastructure.redis.RedisService;
+import com.mirishop.userservice.infrastructure.email.dto.EmailRequest;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.util.Random;
 
+@Slf4j
 @Service
-@Transactional
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class EmailServiceImpl implements EmailService {
+
+    @Value("${spring.mail.expiration-time}")
+    private Duration emailExpirationTime;
 
     // 싱글톤 Random을 생성하여 무작위성 보장
     private static final Random random = new Random();
@@ -38,15 +45,12 @@ public class EmailServiceImpl implements EmailService {
      * 이메일과 인증번호를 받아 검증하는 메소드
      */
     @Override
-    @Transactional(readOnly = true)
     public boolean verityEmail(String email, String verificationCode) {
-        String storedEmail = redisService.getValue(verificationCode);
+        String storedEmail = redisService.getValue("EMAILCODE=" + verificationCode);
         return email.equals(storedEmail);
     }
 
-    /**
-     * 메일 인증코드를 보내는 메소드
-     */
+    // 인증코드가 담긴 이메일 전송 메소드
     private void sendAuthEmail(String email, String authKey) {
         String subject = "메일 인증코드";
         String text = "회원 가입을 위한 인증번호는 " + authKey + "입니다. <br/>";
@@ -60,10 +64,11 @@ public class EmailServiceImpl implements EmailService {
             javaMailSender.send(mimeMessage);
 
         } catch (MessagingException e) {
-            e.printStackTrace();
+            log.error("Failed to send authentication email to {}. Error: {}", email, e.getMessage(), e);
         }
 
         // 유효 시간(5분)동안 {email, authKey} 저장
-        redisService.setDataExpire(authKey, email, 60 * 5L);
+        redisService.setDataExpire("EMAILCODE=" +authKey, email, emailExpirationTime.getSeconds());
     }
 }
+
