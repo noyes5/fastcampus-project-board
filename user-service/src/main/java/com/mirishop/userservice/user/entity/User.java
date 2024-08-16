@@ -1,9 +1,9 @@
 package com.mirishop.userservice.user.entity;
 
+import com.mirishop.userservice.common.entity.BaseEntity;
 import com.mirishop.userservice.user.domain.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -15,57 +15,45 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
+@SQLDelete(sql = "UPDATE users SET is_deleted = true WHERE id = ?")
+@Where(clause = "is_deleted = false")
 @Getter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EntityListeners(AuditingEntityListener.class)
-public class User {
+@AllArgsConstructor
+@Builder
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "number")
     private Long id;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "username", nullable = false)
+    @Column(nullable = false)
     private String username;
 
-    @Column(name = "profile_image", nullable = false)
     private String profileImage;
 
-    @Column(name = "bio", nullable = false)
+    @Column(length = 500)
     private String bio;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
+    @Column(nullable = false)
     private Role role;
 
-    @Column(name = "created_at")
-    @CreatedDate
-    private LocalDateTime createdAt;
+    @Builder.Default
+    private boolean isDeleted = false;
 
-    @Column(name = "updated_at")
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
-
-    @Column(name = "is_deleted", nullable = false)
-    private boolean isDeleted = false; // 처음 생성시 false로 초기화
-
-    public void updateUsername(String nickname) {
+    public void updateUsername(String username) {
         this.username = username;
     }
 
@@ -79,5 +67,10 @@ public class User {
 
     public void updatePassword(String encodeNewPassword) {
         this.password = encodeNewPassword;
+    }
+
+    // Soft delete 메서드
+    public void delete() {
+        this.isDeleted = true;
     }
 }

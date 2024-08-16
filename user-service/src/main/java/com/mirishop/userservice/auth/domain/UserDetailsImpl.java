@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Set;
 
 @Getter
 @Builder
@@ -23,21 +22,18 @@ public class UserDetailsImpl implements UserDetails {
         return UserDetailsImpl.builder()
                 .email(user.getEmail())
                 .password(user.getPassword())
-                .authorities(Set.of())   // 추후 role로 수정
+                .authorities(Collections.singleton(new SimpleGrantedAuthority("ROLE_" + user.getRole())))
                 .build();
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + );
-        return Collections.singleton(authority);
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return "";
+        return password;
     }
 
     @Override
