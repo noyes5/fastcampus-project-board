@@ -1,7 +1,7 @@
 package com.mirishop.userservice.config;
 
-import com.mirishop.userservice.auth.infrastructure.JwtFilter;
-import com.mirishop.userservice.auth.infrastructure.JwtTokenProvider;
+import com.mirishop.userservice.infrastructure.security.JwtFilter;
+import com.mirishop.userservice.infrastructure.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -11,7 +11,6 @@ public enum ErrorCode {
     // email 에러 관련
     DIRECTORY_CREATION_FAILURE(HttpStatus.INTERNAL_SERVER_ERROR,"이미지 저장 폴더 생성 실패"),
     DUPLICATED_EMAIL(HttpStatus.CONFLICT, "이미 존재하는 이메일입니다."),
-    EMPTY_FILE_EXCEPTION(HttpStatus.BAD_REQUEST, "업로드할 이미지가 없습니다."),
     INVALID_EMAIL_FROM(HttpStatus.BAD_REQUEST, "올바른 이메일 형식이 아닙니다."),
     UNSUPPORTED_IMAGE_FORMAT(HttpStatus.UNSUPPORTED_MEDIA_TYPE, "지원하지 않는 이미지 형식입니다."),
 
