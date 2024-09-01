@@ -8,7 +8,9 @@ group = 'com.mirishop'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '17'
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
 }
 
 configurations {
@@ -21,12 +23,27 @@ repositories {
 	mavenCentral()
 }
 
-dependencies {
-//	implementation project(':core-module')
+ext {
+	set('springCloudVersion', "2023.0.3")
+}
 
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Spring Security
+	implementation 'org.springframework.boot:spring-boot-starter-security:3.1.4'
+
+	// Spring jpa
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Eureka
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+	// Spring Feign
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
 	// 캐시 적용
 	implementation 'org.springframework.boot:spring-boot-starter-cache'
@@ -36,8 +53,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.0.4'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
-	// 스프링 시큐리티
-	implementation 'org.springframework.boot:spring-boot-starter-security:2.6.7'
+
 
 	// jwt토큰
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
@@ -47,12 +63,13 @@ dependencies {
 	// DB
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-
-	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.0'
-
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 tasks.named('test') {

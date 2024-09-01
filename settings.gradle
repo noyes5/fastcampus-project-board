@@ -6,4 +6,4 @@ include 'newsfeed-service'
 include 'orderpayment-service'
 include 'productmanagement-service'
 include 'user-service'
-
+include 'service-discovery'

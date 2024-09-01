@@ -19,7 +19,7 @@ services:
       - --collation-server=utf8mb4_unicode_ci
 
   redis:
-    container_name: redis_server
+    container_name: redis
     image: redis:latest
     ports:
       - "6379:6379"

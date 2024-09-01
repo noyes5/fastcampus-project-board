@@ -8,11 +8,10 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @Slf4j
 @RestControllerAdvice
-public class ExceptionManager extends ResponseEntityExceptionHandler {
+public class ExceptionManager {
 
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<ErrorResponse> handleCustomException(CustomException e) {
@@ -64,5 +63,4 @@ public class ExceptionManager extends ResponseEntityExceptionHandler {
         log.error("DataIntegrityViolationException is occurred.", e);
         return ResponseEntity.status(response.getErrorCode().getHttpStatus()).body(response);
     }
-
 }
