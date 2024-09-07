@@ -1,8 +1,7 @@
-package com.hh.mirishop.activity.like.domain;
+package com.mirishop.activity.like.domain;
 
-import com.hh.mirishop.activity.common.exception.ErrorCode;
-import com.hh.mirishop.activity.common.exception.LikeException;
-
+import com.mirishop.activity.common.exception.CustomException;
+import com.mirishop.activity.common.exception.ErrorCode;
 import java.util.stream.Stream;
 
 public enum LikeType {
@@ -23,6 +22,6 @@ public enum LikeType {
         return Stream.of(LikeType.values())
                 .filter(x -> x.value == dbData)
                 .findFirst()
-                .orElseThrow(() -> new LikeException(ErrorCode.CORRESPOND_LIKE_TYPE));
+                .orElseThrow(() -> new CustomException(ErrorCode.CORRESPOND_LIKE_TYPE));
     }
 }

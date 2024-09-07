@@ -1,4 +1,4 @@
-package com.hh.mirishop.activity.client;
+package com.mirishop.activity.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

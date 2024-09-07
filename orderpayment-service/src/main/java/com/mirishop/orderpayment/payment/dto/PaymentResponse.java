@@ -1,9 +1,8 @@
-package com.hh.mirishop.orderpayment.payment.dto;
+package com.mirishop.orderpayment.payment.dto;
 
-import com.hh.mirishop.orderpayment.payment.entity.Payment;
-import lombok.Getter;
-
+import com.mirishop.orderpayment.payment.entity.Payment;
 import java.time.LocalDateTime;
+import lombok.Getter;
 
 @Getter
 public class PaymentResponse {

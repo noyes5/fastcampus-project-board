@@ -1,7 +1,7 @@
-package com.hh.mirishop.productmanagement.stock.entity;
+package com.mirishop.productmanagement.stock.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hh.mirishop.productmanagement.product.entity.Product;
+import com.mirishop.productmanagement.product.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

@@ -1,4 +1,4 @@
-package com.hh.mirishop.newsfeed.common.dto;
+package com.mirishop.newsfeed.common.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

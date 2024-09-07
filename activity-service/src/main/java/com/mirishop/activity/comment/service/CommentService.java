@@ -1,6 +1,6 @@
-package com.hh.mirishop.activity.comment.service;
+package com.mirishop.activity.comment.service;
 
-import com.hh.mirishop.activity.comment.dto.CommentRequest;
+import com.mirishop.activity.comment.dto.CommentRequest;
 
 public interface CommentService {
 

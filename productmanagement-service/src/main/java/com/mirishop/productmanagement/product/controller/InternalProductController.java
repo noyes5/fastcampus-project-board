@@ -1,7 +1,7 @@
-package com.hh.mirishop.productmanagement.product.controller;
+package com.mirishop.productmanagement.product.controller;
 
-import com.hh.mirishop.productmanagement.product.dto.ProductResponse;
-import com.hh.mirishop.productmanagement.product.service.ProductQueryService;
+import com.mirishop.productmanagement.product.dto.ProductResponse;
+import com.mirishop.productmanagement.product.service.ProductQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,8 +1,8 @@
-package com.hh.mirishop.newsfeed.follow.controller;
+package com.mirishop.newsfeed.follow.controller;
 
-import com.hh.mirishop.newsfeed.common.dto.BaseResponse;
-import com.hh.mirishop.newsfeed.follow.dto.FollowRequest;
-import com.hh.mirishop.newsfeed.follow.service.FollowService;
+import com.mirishop.newsfeed.common.dto.BaseResponse;
+import com.mirishop.newsfeed.follow.dto.FollowRequest;
+import com.mirishop.newsfeed.follow.service.FollowService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

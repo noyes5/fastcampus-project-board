@@ -1,7 +1,7 @@
-package com.hh.mirishop.orderpayment.order.enttiy;
+package com.mirishop.orderpayment.order.enttiy;
 
-import com.hh.mirishop.orderpayment.order.domain.OrderStatus;
-import com.hh.mirishop.orderpayment.payment.entity.Payment;
+import com.mirishop.orderpayment.order.domain.OrderStatus;
+import com.mirishop.orderpayment.payment.entity.Payment;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,13 +14,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "orders")

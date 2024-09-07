@@ -1,10 +1,9 @@
-package com.hh.mirishop.activity.post.dto;
+package com.mirishop.activity.post.dto;
 
-import com.hh.mirishop.activity.post.entity.Post;
+import com.mirishop.activity.post.entity.Post;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor

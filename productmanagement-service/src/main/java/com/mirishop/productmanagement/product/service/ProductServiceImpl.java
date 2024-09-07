@@ -1,14 +1,14 @@
-package com.hh.mirishop.productmanagement.product.service;
+package com.mirishop.productmanagement.product.service;
 
-import com.hh.mirishop.productmanagement.common.exception.ErrorCode;
-import com.hh.mirishop.productmanagement.common.exception.ProductException;
-import com.hh.mirishop.productmanagement.product.dto.ProductCreate;
-import com.hh.mirishop.productmanagement.product.dto.ProductUpdate;
-import com.hh.mirishop.productmanagement.product.entity.PreOrderProduct;
-import com.hh.mirishop.productmanagement.product.entity.Product;
-import com.hh.mirishop.productmanagement.product.entity.RegularProduct;
-import com.hh.mirishop.productmanagement.product.repository.ProductRepository;
-import com.hh.mirishop.productmanagement.stock.service.StockService;
+import com.mirishop.productmanagement.common.exception.CustomException;
+import com.mirishop.productmanagement.common.exception.ErrorCode;
+import com.mirishop.productmanagement.product.dto.ProductCreate;
+import com.mirishop.productmanagement.product.dto.ProductUpdate;
+import com.mirishop.productmanagement.product.entity.PreOrderProduct;
+import com.mirishop.productmanagement.product.entity.Product;
+import com.mirishop.productmanagement.product.entity.RegularProduct;
+import com.mirishop.productmanagement.product.repository.ProductRepository;
+import com.mirishop.productmanagement.stock.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.SoftDelete;
 import org.springframework.stereotype.Service;
@@ -65,9 +65,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Transactional(readOnly = true)
-    private Product findProductById(Long productId) {
+    public Product findProductById(Long productId) {
         return productRepository.findByProductIdAndIsDeletedFalse(productId)
-                .orElseThrow(() -> new ProductException(ErrorCode.PRODUCT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.PRODUCT_NOT_FOUND));
     }
 
 

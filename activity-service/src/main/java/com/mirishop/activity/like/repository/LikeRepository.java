@@ -1,13 +1,12 @@
-package com.hh.mirishop.activity.like.repository;
+package com.mirishop.activity.like.repository;
 
-import com.hh.mirishop.activity.like.domain.LikeType;
-import com.hh.mirishop.activity.like.entity.Like;
+import com.mirishop.activity.like.domain.LikeType;
+import com.mirishop.activity.like.entity.Like;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 @Repository
 public interface LikeRepository extends JpaRepository<Like, Long> {

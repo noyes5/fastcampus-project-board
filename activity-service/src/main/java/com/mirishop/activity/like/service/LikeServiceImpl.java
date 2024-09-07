@@ -1,23 +1,20 @@
-package com.hh.mirishop.activity.like.service;
+package com.mirishop.activity.like.service;
 
-import com.hh.mirishop.activity.client.NewsfeedFeignClient;
-import com.hh.mirishop.activity.client.UserFeignClient;
-import com.hh.mirishop.activity.client.dto.NewsFeedCreate;
-import com.hh.mirishop.activity.client.dto.NewsFeedDelete;
-import com.hh.mirishop.activity.comment.repository.CommentRepository;
-import com.hh.mirishop.activity.common.exception.CommentException;
-import com.hh.mirishop.activity.common.exception.ErrorCode;
-import com.hh.mirishop.activity.common.exception.LikeException;
-import com.hh.mirishop.activity.common.exception.PostException;
-import com.hh.mirishop.activity.like.domain.LikeType;
-import com.hh.mirishop.activity.like.entity.Like;
-import com.hh.mirishop.activity.like.repository.LikeRepository;
-import com.hh.mirishop.activity.post.repository.PostRepository;
+import com.mirishop.activity.client.NewsfeedFeignClient;
+import com.mirishop.activity.client.UserFeignClient;
+import com.mirishop.activity.client.dto.NewsFeedCreate;
+import com.mirishop.activity.client.dto.NewsFeedDelete;
+import com.mirishop.activity.comment.repository.CommentRepository;
+import com.mirishop.activity.common.exception.CustomException;
+import com.mirishop.activity.common.exception.ErrorCode;
+import com.mirishop.activity.like.domain.LikeType;
+import com.mirishop.activity.like.entity.Like;
+import com.mirishop.activity.like.repository.LikeRepository;
+import com.mirishop.activity.post.repository.PostRepository;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +36,7 @@ public class LikeServiceImpl implements LikeService {
         findPost(postId);
 
         if (isAlreadyPostLiked(postId, currentMemberNumber)) {
-            throw new LikeException(ErrorCode.ALREADY_LIKE);
+            throw new CustomException(ErrorCode.ALREADY_LIKE);
         }
 
         Like like = Like.builder()
@@ -65,7 +62,7 @@ public class LikeServiceImpl implements LikeService {
                 currentMemberNumber);
 
         if (likeOptional.isEmpty()) {
-            throw new LikeException(ErrorCode.NOT_LIKE);
+            throw new CustomException(ErrorCode.NOT_LIKE);
         }
 
         Like like = likeOptional.get();
@@ -83,7 +80,7 @@ public class LikeServiceImpl implements LikeService {
         findComment(commentId);
 
         if (isAlreadyCommentLiked(commentId, currentMemberNumber)) {
-            throw new LikeException(ErrorCode.ALREADY_LIKE);
+            throw new CustomException(ErrorCode.ALREADY_LIKE);
         }
 
         Like like = Like.builder()
@@ -108,7 +105,7 @@ public class LikeServiceImpl implements LikeService {
                 currentMemberNumber);
 
         if (likeOptional.isEmpty()) {
-            throw new LikeException(ErrorCode.NOT_LIKE);
+            throw new CustomException(ErrorCode.NOT_LIKE);
         }
         Like like = likeOptional.get();
         likeRepository.delete(like);
@@ -118,7 +115,7 @@ public class LikeServiceImpl implements LikeService {
 
     private void findPost(Long postId) {
         postRepository.findById(postId)
-                .orElseThrow(() -> new PostException(ErrorCode.POST_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
     }
 
     private boolean isAlreadyPostLiked(Long postId, Long currentMemberNumber) {
@@ -127,7 +124,7 @@ public class LikeServiceImpl implements LikeService {
 
     private void findComment(Long commentId) {
         commentRepository.findById(commentId)
-                .orElseThrow(() -> new CommentException(ErrorCode.COMMENT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.COMMENT_NOT_FOUND));
     }
 
     private boolean isAlreadyCommentLiked(Long commentId, Long currentMemberNumber) {

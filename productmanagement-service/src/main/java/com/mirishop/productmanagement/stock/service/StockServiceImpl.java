@@ -1,12 +1,12 @@
-package com.hh.mirishop.productmanagement.stock.service;
+package com.mirishop.productmanagement.stock.service;
 
-import com.hh.mirishop.productmanagement.common.exception.ErrorCode;
-import com.hh.mirishop.productmanagement.common.exception.StockException;
-import com.hh.mirishop.productmanagement.config.LockConfig;
-import com.hh.mirishop.productmanagement.common.lock.annotation.DistributedLock;
-import com.hh.mirishop.productmanagement.product.entity.Product;
-import com.hh.mirishop.productmanagement.stock.entity.Stock;
-import com.hh.mirishop.productmanagement.stock.repository.StockRepository;
+import com.mirishop.productmanagement.common.exception.CustomException;
+import com.mirishop.productmanagement.common.exception.ErrorCode;
+import com.mirishop.productmanagement.common.lock.annotation.DistributedLock;
+import com.mirishop.productmanagement.config.LockConfig;
+import com.mirishop.productmanagement.product.entity.Product;
+import com.mirishop.productmanagement.stock.entity.Stock;
+import com.mirishop.productmanagement.stock.repository.StockRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,7 @@ public class StockServiceImpl implements StockService {
     @Transactional
     public void modifyStock(Long productId, int quantity) {
         Stock stock = stockRepository.findById(productId)
-                .orElseThrow(() -> new StockException(ErrorCode.STOCK_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.STOCK_NOT_FOUND));
 
         stock.update(quantity);
     }
@@ -58,12 +58,12 @@ public class StockServiceImpl implements StockService {
         log.info("재고 감소 요청 productId: {}, count: {}", productId, count);
 
         Stock stock = stockRepository.findById(productId)
-                .orElseThrow(() -> new StockException(ErrorCode.STOCK_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.STOCK_NOT_FOUND));
 
         int newQuantity = stock.getQuantity() - count;
         if (newQuantity < 0) {
             log.warn("재고 불충분 for productId: {}. 요청: {}, 가능: {}", productId, count, stock.getQuantity());
-            throw new StockException(ErrorCode.STOCK_NOT_ENOUGH);
+            throw new CustomException(ErrorCode.STOCK_NOT_ENOUGH);
         }
 
         stock.update(newQuantity);
@@ -78,14 +78,14 @@ public class StockServiceImpl implements StockService {
     @DistributedLock(lockConfig = LockConfig.TEST_LOCK)
     public void restoreStock(Long productId, int count) {
         Stock stock = stockRepository.findById(productId)
-                .orElseThrow(() -> new StockException(ErrorCode.STOCK_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.STOCK_NOT_FOUND));
 
         // 기존 재고에서 count만큼 복구
         int newQuantity = stock.getQuantity() + count;
 
         // 재고 수량 확인하여 0보다 작으면 에러
         if (newQuantity < 0) {
-            throw new StockException(ErrorCode.STOCK_NOT_ENOUGH);
+            throw new CustomException(ErrorCode.STOCK_NOT_ENOUGH);
         }
 
         stock.update(newQuantity);

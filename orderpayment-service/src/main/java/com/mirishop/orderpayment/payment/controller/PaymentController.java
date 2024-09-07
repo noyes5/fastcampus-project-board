@@ -1,9 +1,9 @@
-package com.hh.mirishop.orderpayment.payment.controller;
+package com.mirishop.orderpayment.payment.controller;
 
-import com.hh.mirishop.orderpayment.common.dto.BaseResponse;
-import com.hh.mirishop.orderpayment.payment.dto.PaymentCreate;
-import com.hh.mirishop.orderpayment.payment.dto.PaymentResponse;
-import com.hh.mirishop.orderpayment.payment.service.PaymentService;
+import com.mirishop.orderpayment.common.dto.BaseResponse;
+import com.mirishop.orderpayment.payment.dto.PaymentCreate;
+import com.mirishop.orderpayment.payment.dto.PaymentResponse;
+import com.mirishop.orderpayment.payment.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,4 +1,4 @@
-package com.hh.mirishop.newsfeed.follow.domain;
+package com.mirishop.newsfeed.follow.domain;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

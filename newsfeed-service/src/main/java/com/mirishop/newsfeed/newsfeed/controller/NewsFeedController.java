@@ -1,8 +1,8 @@
-package com.hh.mirishop.newsfeed.newsfeed.controller;
+package com.mirishop.newsfeed.newsfeed.controller;
 
-import com.hh.mirishop.newsfeed.common.dto.BaseResponse;
-import com.hh.mirishop.newsfeed.newsfeed.dto.NewsFeedResponse;
-import com.hh.mirishop.newsfeed.newsfeed.service.NewsFeedQueryService;
+import com.mirishop.newsfeed.common.dto.BaseResponse;
+import com.mirishop.newsfeed.newsfeed.dto.NewsFeedResponse;
+import com.mirishop.newsfeed.newsfeed.service.NewsFeedQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

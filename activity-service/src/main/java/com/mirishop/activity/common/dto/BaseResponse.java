@@ -1,4 +1,4 @@
-package com.hh.mirishop.activity.common.dto;
+package com.mirishop.activity.common.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

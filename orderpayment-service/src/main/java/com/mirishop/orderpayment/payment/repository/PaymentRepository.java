@@ -1,11 +1,10 @@
-package com.hh.mirishop.orderpayment.payment.repository;
+package com.mirishop.orderpayment.payment.repository;
 
-import com.hh.mirishop.orderpayment.payment.entity.Payment;
+import com.mirishop.orderpayment.payment.entity.Payment;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
 
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 

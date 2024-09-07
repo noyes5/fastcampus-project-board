@@ -1,4 +1,4 @@
-package com.hh.mirishop.orderpayment.order.dto;
+package com.mirishop.orderpayment.order.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

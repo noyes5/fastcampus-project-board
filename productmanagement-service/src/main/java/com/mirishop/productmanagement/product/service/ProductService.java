@@ -1,7 +1,7 @@
-package com.hh.mirishop.productmanagement.product.service;
+package com.mirishop.productmanagement.product.service;
 
-import com.hh.mirishop.productmanagement.product.dto.ProductCreate;
-import com.hh.mirishop.productmanagement.product.dto.ProductUpdate;
+import com.mirishop.productmanagement.product.dto.ProductCreate;
+import com.mirishop.productmanagement.product.dto.ProductUpdate;
 
 public interface ProductService {
 

@@ -1,7 +1,8 @@
-package com.hh.mirishop.productmanagement.common.lock;
+package com.mirishop.productmanagement.common.lock;
 
-import com.hh.mirishop.productmanagement.common.lock.annotation.DistributedLock;
-import com.hh.mirishop.productmanagement.config.LockConfig;
+import com.mirishop.productmanagement.common.lock.annotation.DistributedLock;
+import com.mirishop.productmanagement.config.LockConfig;
+import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -9,8 +10,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.TimeUnit;
 
 @Component
 @Aspect

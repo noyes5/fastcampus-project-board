@@ -1,4 +1,4 @@
-package com.hh.mirishop.activity.like.service;
+package com.mirishop.activity.like.service;
 
 public interface LikeService {
 

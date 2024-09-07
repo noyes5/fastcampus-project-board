@@ -1,6 +1,6 @@
-package com.hh.mirishop.productmanagement.product.dto;
+package com.mirishop.productmanagement.product.dto;
 
-import com.hh.mirishop.productmanagement.product.entity.Product;
+import com.mirishop.productmanagement.product.entity.Product;
 import lombok.Getter;
 
 @Getter

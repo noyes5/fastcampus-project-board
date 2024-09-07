@@ -1,4 +1,4 @@
-package com.hh.mirishop.activity.post.entity;
+package com.mirishop.activity.post.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

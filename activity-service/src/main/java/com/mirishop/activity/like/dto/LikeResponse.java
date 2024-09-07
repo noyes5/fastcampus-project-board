@@ -1,4 +1,4 @@
-package com.hh.mirishop.activity.like.dto;
+package com.mirishop.activity.like.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

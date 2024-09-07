@@ -1,9 +1,8 @@
-package com.hh.mirishop.productmanagement.stock.repository;
+package com.mirishop.productmanagement.stock.repository;
 
-import com.hh.mirishop.productmanagement.stock.entity.Stock;
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import com.mirishop.productmanagement.stock.entity.Stock;
 import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StockRepository extends JpaRepository<Stock, Long> {
 

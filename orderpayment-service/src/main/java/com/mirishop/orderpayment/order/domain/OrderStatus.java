@@ -1,4 +1,4 @@
-package com.hh.mirishop.orderpayment.order.domain;
+package com.mirishop.orderpayment.order.domain;
 
 public enum OrderStatus {
 

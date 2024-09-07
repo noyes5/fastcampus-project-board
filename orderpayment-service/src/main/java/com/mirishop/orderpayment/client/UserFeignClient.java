@@ -1,4 +1,4 @@
-package com.hh.mirishop.orderpayment.client;
+package com.mirishop.orderpayment.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

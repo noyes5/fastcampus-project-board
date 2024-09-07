@@ -1,19 +1,18 @@
-package com.hh.mirishop.newsfeed.follow.service;
+package com.mirishop.newsfeed.follow.service;
 
-import com.hh.mirishop.newsfeed.client.UserFeignClient;
-import com.hh.mirishop.newsfeed.common.exception.ErrorCode;
-import com.hh.mirishop.newsfeed.common.exception.FollowException;
-import com.hh.mirishop.newsfeed.follow.domain.FollowId;
-import com.hh.mirishop.newsfeed.follow.dto.FollowRequest;
-import com.hh.mirishop.newsfeed.follow.dto.FollowingIdsResponse;
-import com.hh.mirishop.newsfeed.follow.entity.Follow;
-import com.hh.mirishop.newsfeed.follow.repository.FollowRepository;
+import com.mirishop.newsfeed.client.UserFeignClient;
+import com.mirishop.newsfeed.common.exception.CustomException;
+import com.mirishop.newsfeed.common.exception.ErrorCode;
+import com.mirishop.newsfeed.follow.domain.FollowId;
+import com.mirishop.newsfeed.follow.dto.FollowRequest;
+import com.mirishop.newsfeed.follow.dto.FollowingIdsResponse;
+import com.mirishop.newsfeed.follow.entity.Follow;
+import com.mirishop.newsfeed.follow.repository.FollowRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +39,7 @@ public class FollowServiceImpl implements FollowService {
         // 팔로우 가능한 멤버인지 검증
         FollowId followId = new FollowId(currentMemberNumber, followingMemberNumber);
         followRepository.findById(followId).ifPresent(f -> {
-            throw new FollowException(ErrorCode.DUPLICATE_FOLLOW);
+            throw new CustomException(ErrorCode.DUPLICATE_FOLLOW);
         });
 
         Follow follow = new Follow(followId);
@@ -57,7 +56,7 @@ public class FollowServiceImpl implements FollowService {
         FollowId followId = new FollowId(currentMemberNumber, unfollowUserNumber);
 
         Follow follow = followRepository.findById(followId)
-                .orElseThrow(() -> new FollowException(ErrorCode.FOLLOW_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.FOLLOW_NOT_FOUND));
 
         followRepository.delete(follow);
     }
@@ -76,7 +75,7 @@ public class FollowServiceImpl implements FollowService {
 
     private void validateFollowSelf(Long currentMemberNumber, Long followMemberNumber) {
         if (currentMemberNumber.equals(followMemberNumber)) {
-            throw new FollowException(ErrorCode.CANNOT_FOLLOW_SELF);
+            throw new CustomException(ErrorCode.CANNOT_FOLLOW_SELF);
         }
     }
 }

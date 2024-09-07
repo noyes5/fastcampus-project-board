@@ -1,6 +1,6 @@
-package com.hh.mirishop.orderpayment.payment.service;
+package com.mirishop.orderpayment.payment.service;
 
-import com.hh.mirishop.orderpayment.payment.dto.PaymentResponse;
+import com.mirishop.orderpayment.payment.dto.PaymentResponse;
 
 public interface PaymentService {
 

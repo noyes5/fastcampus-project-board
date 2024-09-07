@@ -1,4 +1,4 @@
-package com.hh.mirishop.activity.client.dto;
+package com.mirishop.activity.client.dto;
 
 import lombok.Builder;
 import lombok.Getter;

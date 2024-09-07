@@ -1,7 +1,7 @@
-package com.hh.mirishop.activity.post.service;
+package com.mirishop.activity.post.service;
 
-import com.hh.mirishop.activity.post.dto.PostRequest;
-import com.hh.mirishop.activity.post.dto.PostResponse;
+import com.mirishop.activity.post.dto.PostRequest;
+import com.mirishop.activity.post.dto.PostResponse;
 import org.springframework.data.domain.Page;
 
 

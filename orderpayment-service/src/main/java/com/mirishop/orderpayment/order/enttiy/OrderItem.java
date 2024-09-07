@@ -1,4 +1,4 @@
-package com.hh.mirishop.orderpayment.order.enttiy;
+package com.mirishop.orderpayment.order.enttiy;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;

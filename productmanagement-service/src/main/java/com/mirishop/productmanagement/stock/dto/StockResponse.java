@@ -1,7 +1,7 @@
-package com.hh.mirishop.productmanagement.stock.dto;
+package com.mirishop.productmanagement.stock.dto;
 
-import com.hh.mirishop.productmanagement.product.entity.PreOrderProduct;
-import com.hh.mirishop.productmanagement.stock.entity.Stock;
+import com.mirishop.productmanagement.product.entity.PreOrderProduct;
+import com.mirishop.productmanagement.stock.entity.Stock;
 import lombok.Getter;
 
 @Getter

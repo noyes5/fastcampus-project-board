@@ -1,17 +1,17 @@
-package com.hh.mirishop.orderpayment.order.service;
+package com.mirishop.orderpayment.order.service;
 
-import com.hh.mirishop.orderpayment.client.ProductServiceClient;
-import com.hh.mirishop.orderpayment.client.UserFeignClient;
-import com.hh.mirishop.orderpayment.client.dto.ProductResponse;
-import com.hh.mirishop.orderpayment.common.exception.ErrorCode;
-import com.hh.mirishop.orderpayment.common.exception.OrderException;
-import com.hh.mirishop.orderpayment.order.domain.OrderStatus;
-import com.hh.mirishop.orderpayment.order.dto.OrderAddressDto;
-import com.hh.mirishop.orderpayment.order.dto.OrderCreate;
-import com.hh.mirishop.orderpayment.order.dto.OrderDto;
-import com.hh.mirishop.orderpayment.order.enttiy.Order;
-import com.hh.mirishop.orderpayment.order.enttiy.OrderItem;
-import com.hh.mirishop.orderpayment.order.repository.OrderRepository;
+import com.mirishop.orderpayment.client.ProductServiceClient;
+import com.mirishop.orderpayment.client.UserFeignClient;
+import com.mirishop.orderpayment.client.dto.ProductResponse;
+import com.mirishop.orderpayment.common.exception.CustomException;
+import com.mirishop.orderpayment.common.exception.ErrorCode;
+import com.mirishop.orderpayment.order.domain.OrderStatus;
+import com.mirishop.orderpayment.order.dto.OrderAddressDto;
+import com.mirishop.orderpayment.order.dto.OrderCreate;
+import com.mirishop.orderpayment.order.dto.OrderDto;
+import com.mirishop.orderpayment.order.enttiy.Order;
+import com.mirishop.orderpayment.order.enttiy.OrderItem;
+import com.mirishop.orderpayment.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(readOnly = true)
     public OrderDto findOrderByMemberNumber(Long orderId) {
         Order order = orderRepository.findOrderWithOrderItemsByOrderId(orderId)
-                .orElseThrow(() -> new OrderException(ErrorCode.ORDER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.ORDER_NOT_FOUND));
 
         return new OrderDto(order);
     }
@@ -90,7 +90,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void addAddressToOrder(Long orderId, OrderAddressDto address) {
         Order savedOrder = orderRepository.findById(orderId)
-                .orElseThrow(() -> new OrderException(ErrorCode.ORDER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.ORDER_NOT_FOUND));
 
         savedOrder.addAddress(address.getAddress());
     }
@@ -103,11 +103,11 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void completeOrder(Long orderId, Long currentMemberNumber) {
         Order order = orderRepository.findByOrderIdAndMemberNumber(orderId, currentMemberNumber)
-                .orElseThrow(() -> new OrderException(ErrorCode.ORDER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.ORDER_NOT_FOUND));
 
         // 주문 상태 검증
         if (order.getStatus() != OrderStatus.PAYMENT_WAITING) {
-            throw new OrderException(ErrorCode.INVALID_ORDER_STATUS);
+            throw new CustomException(ErrorCode.INVALID_ORDER_STATUS);
         }
 
         // 주문 상태 완료처리
@@ -123,7 +123,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void cancelOrder(Long orderId, Long currentMemberNumber) {
         Order order = orderRepository.findByOrderIdAndMemberNumber(orderId, currentMemberNumber)
-                .orElseThrow(() -> new OrderException(ErrorCode.ORDER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.ORDER_NOT_FOUND));
 
         validateOrder(order);
         order.cancel();
@@ -137,7 +137,7 @@ public class OrderServiceImpl implements OrderService {
 
     private void validateOrder(Order order) {
         if (order.getStatus() == OrderStatus.CANCEL) {
-            throw new OrderException(ErrorCode.ORDER_STATUS_CANCELED);
+            throw new CustomException(ErrorCode.ORDER_STATUS_CANCELED);
         }
     }
 }

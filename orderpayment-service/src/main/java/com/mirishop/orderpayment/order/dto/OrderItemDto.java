@@ -1,6 +1,6 @@
-package com.hh.mirishop.orderpayment.order.dto;
+package com.mirishop.orderpayment.order.dto;
 
-import com.hh.mirishop.orderpayment.order.enttiy.OrderItem;
+import com.mirishop.orderpayment.order.enttiy.OrderItem;
 import lombok.Getter;
 
 @Getter

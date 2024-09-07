@@ -1,4 +1,4 @@
-package com.hh.mirishop.newsfeed.follow.dto;
+package com.mirishop.newsfeed.follow.dto;
 
 import lombok.Builder;
 import lombok.Getter;

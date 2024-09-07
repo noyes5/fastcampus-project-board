@@ -1,4 +1,4 @@
-package com.hh.mirishop.productmanagement.common.exception;
+package com.mirishop.productmanagement.common.exception;
 
 import lombok.Getter;
 

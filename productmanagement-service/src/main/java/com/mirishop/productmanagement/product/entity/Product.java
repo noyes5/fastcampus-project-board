@@ -1,6 +1,6 @@
-package com.hh.mirishop.productmanagement.product.entity;
+package com.mirishop.productmanagement.product.entity;
 
-import com.hh.mirishop.productmanagement.stock.entity.Stock;
+import com.mirishop.productmanagement.stock.entity.Stock;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
@@ -14,6 +14,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,8 +23,6 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 
 /**
  * product를 추상화하여 일반 상품과 예약 상품으로 나눕니다.

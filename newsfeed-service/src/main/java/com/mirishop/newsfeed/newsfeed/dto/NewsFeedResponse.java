@@ -1,11 +1,10 @@
-package com.hh.mirishop.newsfeed.newsfeed.dto;
+package com.mirishop.newsfeed.newsfeed.dto;
 
-import com.hh.mirishop.newsfeed.newsfeed.domain.NewsFeedType;
-import com.hh.mirishop.newsfeed.newsfeed.entity.NewsFeed;
+import com.mirishop.newsfeed.newsfeed.domain.NewsFeedType;
+import com.mirishop.newsfeed.newsfeed.entity.NewsFeed;
+import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Builder

@@ -1,8 +1,7 @@
-package com.hh.mirishop.newsfeed.follow.service;
+package com.mirishop.newsfeed.follow.service;
 
-import com.hh.mirishop.newsfeed.follow.dto.FollowRequest;
-import com.hh.mirishop.newsfeed.follow.dto.FollowingIdsResponse;
-
+import com.mirishop.newsfeed.follow.dto.FollowRequest;
+import com.mirishop.newsfeed.follow.dto.FollowingIdsResponse;
 
 public interface FollowService {
 

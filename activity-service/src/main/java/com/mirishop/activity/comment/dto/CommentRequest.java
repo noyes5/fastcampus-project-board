@@ -1,4 +1,4 @@
-package com.hh.mirishop.activity.comment.dto;
+package com.mirishop.activity.comment.dto;
 
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

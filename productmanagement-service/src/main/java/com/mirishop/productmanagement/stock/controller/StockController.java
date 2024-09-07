@@ -1,4 +1,4 @@
-package com.hh.mirishop.productmanagement.stock.controller;
+package com.mirishop.productmanagement.stock.controller;
 
 import com.hh.mirishop.productmanagement.common.dto.BaseResponse;
 import com.hh.mirishop.productmanagement.stock.dto.StockResponse;

@@ -1,6 +1,6 @@
-package com.hh.mirishop.orderpayment.client;
+package com.mirishop.orderpayment.client;
 
-import com.hh.mirishop.orderpayment.client.dto.ProductResponse;
+import com.mirishop.orderpayment.client.dto.ProductResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

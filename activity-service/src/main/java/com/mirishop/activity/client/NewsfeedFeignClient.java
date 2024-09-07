@@ -1,8 +1,8 @@
-package com.hh.mirishop.activity.client;
+package com.mirishop.activity.client;
 
-import com.hh.mirishop.activity.client.dto.NewsFeedCreate;
-import com.hh.mirishop.activity.client.dto.NewsFeedDelete;
-import com.hh.mirishop.activity.client.dto.NewsFeedUpdate;
+import com.mirishop.activity.client.dto.NewsFeedCreate;
+import com.mirishop.activity.client.dto.NewsFeedDelete;
+import com.mirishop.activity.client.dto.NewsFeedUpdate;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

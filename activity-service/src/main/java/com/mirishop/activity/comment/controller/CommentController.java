@@ -1,9 +1,10 @@
-package com.hh.mirishop.activity.comment.controller;
+package com.mirishop.activity.comment.controller;
 
-import com.hh.mirishop.activity.comment.dto.CommentRequest;
-import com.hh.mirishop.activity.comment.service.CommentService;
-import com.hh.mirishop.activity.common.dto.BaseResponse;
+import com.mirishop.activity.comment.dto.CommentRequest;
+import com.mirishop.activity.comment.service.CommentService;
+import com.mirishop.activity.common.dto.BaseResponse;
 import jakarta.validation.Valid;
+import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
 
 @RestController
 @RequestMapping("/api/v1/posts/{postId}/comments")

@@ -1,11 +1,10 @@
-package com.hh.mirishop.orderpayment.order.dto;
+package com.mirishop.orderpayment.order.dto;
 
-import com.hh.mirishop.orderpayment.order.domain.OrderStatus;
-import com.hh.mirishop.orderpayment.order.enttiy.Order;
-import lombok.Getter;
-
+import com.mirishop.orderpayment.order.domain.OrderStatus;
+import com.mirishop.orderpayment.order.enttiy.Order;
 import java.time.LocalDateTime;
 import java.util.List;
+import lombok.Getter;
 
 @Getter
 public class OrderDto {

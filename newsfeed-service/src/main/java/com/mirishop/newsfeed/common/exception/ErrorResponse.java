@@ -1,14 +1,14 @@
-package com.hh.mirishop.newsfeed.common.exception;
+package com.mirishop.newsfeed.common.exception;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 @Builder
-@RequiredArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ErrorResponse {
-
-    private final String code;
+    private final ErrorCode errorCode;
     private final String message;
 }

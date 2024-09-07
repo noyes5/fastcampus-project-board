@@ -1,10 +1,10 @@
-package com.hh.mirishop.newsfeed.newsfeed.service;
+package com.mirishop.newsfeed.newsfeed.service;
 
-import com.hh.mirishop.newsfeed.newsfeed.domain.NewsFeedType;
-import com.hh.mirishop.newsfeed.newsfeed.dto.NewsFeedCreate;
-import com.hh.mirishop.newsfeed.newsfeed.dto.NewsFeedDelete;
-import com.hh.mirishop.newsfeed.newsfeed.dto.NewsFeedUpdate;
-import com.hh.mirishop.newsfeed.newsfeed.entity.NewsFeed;
+import com.mirishop.newsfeed.newsfeed.domain.NewsFeedType;
+import com.mirishop.newsfeed.newsfeed.dto.NewsFeedCreate;
+import com.mirishop.newsfeed.newsfeed.dto.NewsFeedDelete;
+import com.mirishop.newsfeed.newsfeed.dto.NewsFeedUpdate;
+import com.mirishop.newsfeed.newsfeed.entity.NewsFeed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;

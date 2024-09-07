@@ -1,4 +1,4 @@
-package com.hh.mirishop.activity.common.exception;
+package com.mirishop.activity.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +22,12 @@ public enum ErrorCode {
     PARENT_COMMENT_NOT_FOUND(HttpStatus.BAD_REQUEST, "상위 댓글이 없습니다."),
     SUBCOMMENT_NOT_ALLOWED(HttpStatus.BAD_REQUEST, "대댓글을 달 수 없습니다."),
     UNAUTHORIZED_COMMENT_ACCESS(HttpStatus.UNAUTHORIZED, "댓글 삭제는 회원 본인만 가능합니다."),
+
+    // 서버 에러 관련
+    NOT_FOUND(HttpStatus.BAD_REQUEST, "요청사항을 찾을 수 없습니다."),
+    BAD_REQUEST(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
+
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "서버에 문제가 발생했습니다."),
     ;
 
     private final HttpStatus httpStatus;

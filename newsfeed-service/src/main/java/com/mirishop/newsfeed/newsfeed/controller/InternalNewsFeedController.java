@@ -1,10 +1,10 @@
-package com.hh.mirishop.newsfeed.newsfeed.controller;
+package com.mirishop.newsfeed.newsfeed.controller;
 
-import com.hh.mirishop.newsfeed.common.dto.BaseResponse;
-import com.hh.mirishop.newsfeed.newsfeed.dto.NewsFeedCreate;
-import com.hh.mirishop.newsfeed.newsfeed.dto.NewsFeedDelete;
-import com.hh.mirishop.newsfeed.newsfeed.dto.NewsFeedUpdate;
-import com.hh.mirishop.newsfeed.newsfeed.service.NewsFeedService;
+import com.mirishop.newsfeed.common.dto.BaseResponse;
+import com.mirishop.newsfeed.newsfeed.dto.NewsFeedCreate;
+import com.mirishop.newsfeed.newsfeed.dto.NewsFeedDelete;
+import com.mirishop.newsfeed.newsfeed.dto.NewsFeedUpdate;
+import com.mirishop.newsfeed.newsfeed.service.NewsFeedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

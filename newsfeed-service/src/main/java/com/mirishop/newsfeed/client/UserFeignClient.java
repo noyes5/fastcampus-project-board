@@ -1,4 +1,4 @@
-package com.hh.mirishop.newsfeed.client;
+package com.mirishop.newsfeed.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

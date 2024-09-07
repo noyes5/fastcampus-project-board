@@ -1,4 +1,4 @@
-package com.hh.mirishop.productmanagement.stock.service;
+package com.mirishop.productmanagement.stock.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

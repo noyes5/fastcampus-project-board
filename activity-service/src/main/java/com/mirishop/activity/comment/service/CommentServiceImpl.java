@@ -1,24 +1,22 @@
-package com.hh.mirishop.activity.comment.service;
+package com.mirishop.activity.comment.service;
 
-import com.hh.mirishop.activity.client.NewsfeedFeignClient;
-import com.hh.mirishop.activity.client.UserFeignClient;
-import com.hh.mirishop.activity.client.dto.NewsFeedCreate;
-import com.hh.mirishop.activity.client.dto.NewsFeedDelete;
-import com.hh.mirishop.activity.comment.dto.CommentRequest;
-import com.hh.mirishop.activity.comment.entity.Comment;
-import com.hh.mirishop.activity.comment.repository.CommentRepository;
-import com.hh.mirishop.activity.common.exception.CommentException;
-import com.hh.mirishop.activity.common.exception.ErrorCode;
-import com.hh.mirishop.activity.common.exception.PostException;
-import com.hh.mirishop.activity.like.repository.LikeRepository;
-import com.hh.mirishop.activity.post.entity.Post;
-import com.hh.mirishop.activity.post.repository.PostRepository;
+import com.mirishop.activity.client.NewsfeedFeignClient;
+import com.mirishop.activity.client.UserFeignClient;
+import com.mirishop.activity.client.dto.NewsFeedCreate;
+import com.mirishop.activity.client.dto.NewsFeedDelete;
+import com.mirishop.activity.comment.dto.CommentRequest;
+import com.mirishop.activity.comment.entity.Comment;
+import com.mirishop.activity.comment.repository.CommentRepository;
+import com.mirishop.activity.common.exception.CustomException;
+import com.mirishop.activity.common.exception.ErrorCode;
+import com.mirishop.activity.like.repository.LikeRepository;
+import com.mirishop.activity.post.entity.Post;
+import com.mirishop.activity.post.repository.PostRepository;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.SoftDelete;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -83,29 +81,29 @@ public class CommentServiceImpl implements CommentService {
 
         // 대댓글의 대댓글은 불가능(depth를 1로 고정)
         if (parentComment.getParentComment() != null) {
-            throw new CommentException(ErrorCode.SUBCOMMENT_NOT_ALLOWED);
+            throw new CustomException(ErrorCode.SUBCOMMENT_NOT_ALLOWED);
         }
         return parentComment;
     }
 
     private Post findPostById(Long postId) {
         return postRepository.findById(postId)
-                .orElseThrow(() -> new PostException(ErrorCode.POST_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
     }
 
     private Comment findParentCommentById(Long parentCommentId) {
         return commentRepository.findById(parentCommentId)
-                .orElseThrow(() -> new CommentException(ErrorCode.PARENT_COMMENT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.PARENT_COMMENT_NOT_FOUND));
     }
 
     private Comment findCommentById(Long commentId) {
         return commentRepository.findById(commentId)
-                .orElseThrow(() -> new CommentException(ErrorCode.COMMENT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.COMMENT_NOT_FOUND));
     }
 
     private void checkAuthorizedMember(Long currentMemberNumber, Comment comment) {
         if (!Objects.equals(comment.getMemberNumber(), currentMemberNumber)) {
-            throw new CommentException(ErrorCode.UNAUTHORIZED_COMMENT_ACCESS);
+            throw new CustomException(ErrorCode.UNAUTHORIZED_COMMENT_ACCESS);
         }
     }
 

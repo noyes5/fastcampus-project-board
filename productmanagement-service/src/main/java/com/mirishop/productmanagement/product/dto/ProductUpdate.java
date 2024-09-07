@@ -1,4 +1,4 @@
-package com.hh.mirishop.productmanagement.product.dto;
+package com.mirishop.productmanagement.product.dto;
 
 
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package com.hh.mirishop.newsfeed.newsfeed.dto;
+package com.mirishop.newsfeed.newsfeed.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

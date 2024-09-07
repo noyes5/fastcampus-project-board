@@ -1,18 +1,18 @@
-package com.hh.mirishop.activity.post.service;
+package com.mirishop.activity.post.service;
 
-import com.hh.mirishop.activity.client.NewsfeedFeignClient;
-import com.hh.mirishop.activity.client.UserFeignClient;
-import com.hh.mirishop.activity.client.dto.NewsFeedCreate;
-import com.hh.mirishop.activity.client.dto.NewsFeedDelete;
-import com.hh.mirishop.activity.client.dto.NewsFeedUpdate;
-import com.hh.mirishop.activity.common.exception.ErrorCode;
-import com.hh.mirishop.activity.common.exception.PostException;
-import com.hh.mirishop.activity.like.domain.LikeType;
-import com.hh.mirishop.activity.like.repository.LikeRepository;
-import com.hh.mirishop.activity.post.dto.PostRequest;
-import com.hh.mirishop.activity.post.dto.PostResponse;
-import com.hh.mirishop.activity.post.entity.Post;
-import com.hh.mirishop.activity.post.repository.PostRepository;
+import com.mirishop.activity.client.NewsfeedFeignClient;
+import com.mirishop.activity.client.UserFeignClient;
+import com.mirishop.activity.client.dto.NewsFeedCreate;
+import com.mirishop.activity.client.dto.NewsFeedDelete;
+import com.mirishop.activity.client.dto.NewsFeedUpdate;
+import com.mirishop.activity.common.exception.CustomException;
+import com.mirishop.activity.common.exception.ErrorCode;
+import com.mirishop.activity.like.domain.LikeType;
+import com.mirishop.activity.like.repository.LikeRepository;
+import com.mirishop.activity.post.dto.PostRequest;
+import com.mirishop.activity.post.dto.PostResponse;
+import com.mirishop.activity.post.entity.Post;
+import com.mirishop.activity.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.SoftDelete;
 import org.springframework.data.domain.Page;
@@ -110,7 +110,7 @@ public class PostServiceImpl implements PostService {
 
     private Post findPostById(Long postId) {
         return postRepository.findByPostIdAndIsDeletedFalse(postId)
-                .orElseThrow(() -> new PostException(ErrorCode.POST_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
     }
 
     private Integer countLikeForPost(Long postId) {
@@ -119,7 +119,7 @@ public class PostServiceImpl implements PostService {
 
     private void checkAuthorizedMember(Long currentMemberNumber, Post post) {
         if (!post.getMemberNumber().equals(currentMemberNumber)) {
-            throw new PostException(ErrorCode.UNAUTHORIZED_POST_ACCESS);
+            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_ACCESS);
         }
     }
 

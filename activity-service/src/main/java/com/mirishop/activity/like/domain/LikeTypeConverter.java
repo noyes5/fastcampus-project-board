@@ -1,4 +1,4 @@
-package com.hh.mirishop.activity.like.domain;
+package com.mirishop.activity.like.domain;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

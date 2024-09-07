@@ -1,35 +1,66 @@
-package com.hh.mirishop.newsfeed.common.exception;
+package com.mirishop.newsfeed.common.exception;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+@Slf4j
 @RestControllerAdvice
-public class ExceptionManager extends ResponseEntityExceptionHandler {
+public class ExceptionManager {
 
-    @ExceptionHandler(FollowException.class)
-    protected ResponseEntity<?> handleFollowException(FollowException e) {
-        ErrorCode errorCode = e.getErrorCode();
-        return handleExceptionInternal(errorCode);
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<ErrorResponse> handleCustomException(CustomException e) {
+        ErrorResponse response = ErrorResponse.builder()
+            .errorCode(e.getErrorCode())
+            .message(e.getMessage())
+            .build();
+
+        log.warn("{}", e.getMessage());
+        return ResponseEntity.status(e.getStatus()).body(response);
     }
 
-    @ExceptionHandler(NewsFeedException.class)
-    protected ResponseEntity<?> handleNewsFeedException(NewsFeedException e) {
-        ErrorCode errorCode = e.getErrorCode();
-        return handleExceptionInternal(errorCode);
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleException(Exception e) {
+        ErrorResponse response = ErrorResponse.builder()
+            .errorCode(ErrorCode.INTERNAL_SERVER_ERROR)
+            .message(ErrorCode.INTERNAL_SERVER_ERROR.getMessage())
+            .build();
+
+        log.error("Exception is occurred.", e);
+        return ResponseEntity.status(response.getErrorCode().getHttpStatus()).body(response);
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        BindingResult bindingResult = e.getBindingResult();
+        StringBuilder errorMessage = new StringBuilder();
 
-    private ResponseEntity<Object> handleExceptionInternal(ErrorCode errorCode) {
-        return ResponseEntity.status(errorCode.getHttpStatus())
-                .body(makeErrorResponse(errorCode));
+        for (FieldError fieldError : bindingResult.getFieldErrors()) {
+            errorMessage.append(fieldError.getDefaultMessage()).append("; ");
+        }
+
+        ErrorResponse response = ErrorResponse.builder()
+            .errorCode(ErrorCode.BAD_REQUEST)
+            .message(errorMessage.toString())
+            .build();
+
+        log.error("MethodArgumentNotValidException is occurred.", e);
+        return ResponseEntity.status(response.getErrorCode().getHttpStatus()).body(response);
     }
 
-    private ErrorResponse makeErrorResponse(ErrorCode errorCode) {
-        return ErrorResponse.builder()
-                .code(errorCode.name())
-                .message(errorCode.getMessage())
-                .build();
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+        ErrorResponse response = ErrorResponse.builder()
+            .errorCode(ErrorCode.BAD_REQUEST)
+            .message(ErrorCode.BAD_REQUEST.getMessage())
+            .build();
+
+        log.error("DataIntegrityViolationException is occurred.", e);
+        return ResponseEntity.status(response.getErrorCode().getHttpStatus()).body(response);
     }
 }

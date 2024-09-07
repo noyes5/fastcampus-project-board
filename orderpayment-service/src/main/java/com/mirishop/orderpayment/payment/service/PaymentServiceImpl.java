@@ -1,12 +1,12 @@
-package com.hh.mirishop.orderpayment.payment.service;
+package com.mirishop.orderpayment.payment.service;
 
-import com.hh.mirishop.orderpayment.common.exception.ErrorCode;
-import com.hh.mirishop.orderpayment.common.exception.OrderException;
-import com.hh.mirishop.orderpayment.order.enttiy.Order;
-import com.hh.mirishop.orderpayment.order.repository.OrderRepository;
-import com.hh.mirishop.orderpayment.payment.dto.PaymentResponse;
-import com.hh.mirishop.orderpayment.payment.entity.Payment;
-import com.hh.mirishop.orderpayment.payment.repository.PaymentRepository;
+import com.mirishop.orderpayment.common.exception.CustomException;
+import com.mirishop.orderpayment.common.exception.ErrorCode;
+import com.mirishop.orderpayment.order.enttiy.Order;
+import com.mirishop.orderpayment.order.repository.OrderRepository;
+import com.mirishop.orderpayment.payment.dto.PaymentResponse;
+import com.mirishop.orderpayment.payment.entity.Payment;
+import com.mirishop.orderpayment.payment.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +26,7 @@ public class PaymentServiceImpl implements PaymentService{
     public PaymentResponse createPayment(Long orderId, Long currentMemberNumber) {
         // 주문 여부 조회
         Order savedOrder = orderRepository.findById(orderId)
-                .orElseThrow(() -> new OrderException(ErrorCode.ORDER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.ORDER_NOT_FOUND));
         Payment payment = Payment.builder()
                 .memberNumber(currentMemberNumber)
                 .isDeleted(false)

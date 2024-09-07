@@ -1,19 +1,18 @@
-package com.hh.mirishop.productmanagement.config;
+package com.mirishop.productmanagement.config;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RedissonConfig {
 
-    @Value("${spring.redis.cache.host}")
+//    @Value("${spring.redis.cache.host}")
     private String host;
 
-    @Value("${spring.redis.cache.port}")
+//    @Value("${spring.redis.cache.port}")
     private int port;
 
     private static final String REDISSON_HOST_PREFIX = "redis://";

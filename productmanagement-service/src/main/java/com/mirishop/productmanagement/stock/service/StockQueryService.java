@@ -1,10 +1,37 @@
-package com.hh.mirishop.productmanagement.stock.service;
+package com.mirishop.productmanagement.stock.service;
 
-import com.hh.mirishop.productmanagement.stock.entity.Stock;
+import com.mirishop.productmanagement.common.exception.CustomException;
+import com.mirishop.productmanagement.common.exception.ErrorCode;
+import com.mirishop.productmanagement.stock.entity.Stock;
+import com.mirishop.productmanagement.stock.repository.StockRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface StockQueryService {
+@Service
+@Transactional
+@RequiredArgsConstructor
+public class StockQueryService {
 
-    Stock readStock(Long productId);
+    private final StockRepository stockRepository;
 
-    Integer readStockCount(Long productId);
+    /**
+     * productId로 Stock 객체를 리턴하는 메소드
+     */
+    @Transactional(readOnly = true)
+    public Stock readStock(Long productId) {
+        return stockRepository.findById(productId)
+                .orElseThrow(() -> new CustomException(ErrorCode.STOCK_NOT_FOUND));
+    }
+
+    /**
+     * productId로 재고 갯수만을 조회하는 메소드
+     */
+    @Transactional(readOnly = true)
+    public Integer readStockCount(Long productId) {
+        Stock stock = stockRepository.findById(productId)
+                .orElseThrow(() -> new CustomException(ErrorCode.STOCK_NOT_FOUND));
+
+        return stock.getQuantity();
+    }
 }

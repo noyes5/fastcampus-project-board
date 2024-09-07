@@ -1,11 +1,11 @@
-package com.hh.mirishop.productmanagement.product.controller;
+package com.mirishop.productmanagement.product.controller;
 
-import com.hh.mirishop.productmanagement.common.dto.BaseResponse;
-import com.hh.mirishop.productmanagement.product.dto.ProductCreate;
-import com.hh.mirishop.productmanagement.product.dto.ProductResponse;
-import com.hh.mirishop.productmanagement.product.dto.ProductUpdate;
-import com.hh.mirishop.productmanagement.product.service.ProductQueryService;
-import com.hh.mirishop.productmanagement.product.service.ProductService;
+import com.mirishop.productmanagement.common.dto.BaseResponse;
+import com.mirishop.productmanagement.product.dto.ProductCreate;
+import com.mirishop.productmanagement.product.dto.ProductResponse;
+import com.mirishop.productmanagement.product.dto.ProductUpdate;
+import com.mirishop.productmanagement.product.service.ProductQueryService;
+import com.mirishop.productmanagement.product.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

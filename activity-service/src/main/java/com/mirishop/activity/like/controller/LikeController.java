@@ -1,7 +1,8 @@
-package com.hh.mirishop.activity.like.controller;
+package com.mirishop.activity.like.controller;
 
-import com.hh.mirishop.activity.common.dto.BaseResponse;
-import com.hh.mirishop.activity.like.service.LikeServiceImpl;
+
+import com.mirishop.activity.common.dto.BaseResponse;
+import com.mirishop.activity.like.service.LikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/likes")
 public class LikeController {
 
-    private final LikeServiceImpl likeService;
+    private final LikeService likeService;
 
     /**
      * 게시글 정보를 받아서 좋아요를 생성합니다.
